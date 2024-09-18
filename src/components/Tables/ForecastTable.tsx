@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 import ScrollAreaCustom from '@/components/ScrollAreaCustom/ScrollAreaCustom';
 import { ForecastItem } from '@/types/forecast';
 
@@ -47,6 +49,12 @@ const ForecastTable: React.FC<ForecastTableProps> = ({ dailyForecasts }) => {
                       'd-flex justify-content-center align-content-center align-items-center'
                     }
                   >
+                    <Image
+                      width={50}
+                      height={50}
+                      src={`/weather-icons/${day.weather[0].icon}@2x.png`}
+                      alt=""
+                    />
                     <div
                       style={{
                         textTransform: 'uppercase',

@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import Image from 'next/image';
 
 import { WeatherData } from '@/types/weather';
 
@@ -15,7 +16,7 @@ const WeatherCardItem: React.FC<WeatherCardItemProps> = ({
 }) => {
   const { name, sys, weather: weatherArray, main } = weather;
   const { country } = sys;
-  const { description } = weatherArray[0];
+  const { icon, description } = weatherArray[0];
   const { temp, humidity } = main;
 
   return (
@@ -26,6 +27,12 @@ const WeatherCardItem: React.FC<WeatherCardItemProps> = ({
       </div>
 
       <div className="d-flex justify-content-center flex-column align-items-center">
+        <Image
+          width={100}
+          height={100}
+          src={`/weather-icons/${icon}@2x.png`}
+          alt={description}
+        />
         <p className={clsx('fs-6 badge text-bg-warning mt-1')}>{description}</p>
       </div>
 
