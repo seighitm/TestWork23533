@@ -28,7 +28,7 @@ const Home: React.FC<HomePageProps> = ({ searchParams }) => {
   const userTypingRef = useRef(false);
   const { selectedCity, setSelectedCity } = useWeatherStore();
 
-  const [currentCity, setCurrentCity] = useState<WeatherData>(null);
+  const [currentCity, setCurrentCity] = useState<WeatherData | null>(null);
 
   const initialLoad = useRef(false);
 

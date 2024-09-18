@@ -57,7 +57,7 @@ const Favorites: React.FC = () => {
 
   return (
     <div className="container">
-      <h2 className="text-center fw-bolder mb-4">Your Favorite Cities</h2>
+      <h2 className="text-center fw-bolder mb-4">Favorite Cities</h2>
       {loading && (
         <div className="d-flex w-100 justify-content-center">
           <Loader />

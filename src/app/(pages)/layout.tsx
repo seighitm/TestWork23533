@@ -8,6 +8,9 @@ import Navbar from '@/components/Navbar/Navbar';
 export const metadata: Metadata = {
   title: 'Weather App',
   description: 'Weather App',
+  icons: {
+    icon: '/favicon.png',
+  },
 };
 
 const Layout = ({ children }: Readonly<{ children: React.ReactNode }>) => (
