@@ -1,5 +1,6 @@
 import axios from 'axios';
-import {OPENWEATHERMAP_BASE_URL} from "@/config/constnts";
+
+import { OPENWEATHERMAP_BASE_URL } from '@/config/constnts';
 
 export const GET = async (req: Request) => {
   const { searchParams } = new URL(req.url);
@@ -15,10 +16,13 @@ export const GET = async (req: Request) => {
   }
 
   if (typeof country !== 'string') {
-    return new Response(JSON.stringify({ error: `Invalid country parameter` }), {
-      status: 400,
-      statusText: 'Invalid country parameter',
-    });
+    return new Response(
+      JSON.stringify({ error: `Invalid country parameter` }),
+      {
+        status: 400,
+        statusText: 'Invalid country parameter',
+      },
+    );
   }
 
   try {

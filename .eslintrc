@@ -1,11 +1,11 @@
 {
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": 2021,
-    "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
-    }
+    },
+    "sourceType": "module",
+    "ecmaVersion": "latest"
   },
   "env": {
     "browser": true,
@@ -28,9 +28,12 @@
     "prettier",
     "@typescript-eslint",
     "react",
-    "react-hooks"
+    "react-hooks",
+    "simple-import-sort"
   ],
   "rules": {
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
     "prefer-const": "warn",
     "no-var": "warn",
     "no-unused-vars": "off",

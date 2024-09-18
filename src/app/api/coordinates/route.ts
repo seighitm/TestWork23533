@@ -1,5 +1,6 @@
 import axios from 'axios';
-import {OPENWEATHERMAP_BASE_URL} from "@/config/constnts";
+
+import { OPENWEATHERMAP_BASE_URL } from '@/config/constnts';
 
 export const GET = async (req: Request) => {
   const { searchParams } = new URL(req.url);
