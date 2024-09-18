@@ -153,7 +153,7 @@ const Home: React.FC<HomePageProps> = ({ searchParams }) => {
               value={cityInput}
               onChange={handleCityInputChange}
             />
-            {currentCity && isLoadingFetchCoordinates && (
+            {isLoadingFetchCoordinates && (
               <div className="d-flex justify-content-center mt-2">
                 <Loader size="sm" />
               </div>
