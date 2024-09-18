@@ -1,6 +1,9 @@
 import Link from 'next/link';
 import { useCallback } from 'react';
 
+import HeartIcon from '@/icons/heart.svg';
+import HeartOffIcon from '@/icons/heart-off.svg';
+import ThermometerIcon from '@/icons/thermometer.svg';
 import { useWeatherStore } from '@/store/useWeatherStore';
 import { WeatherData } from '@/types/weather';
 
@@ -42,14 +45,14 @@ const WeatherCardControl: React.FC<WeatherCardControlProps> = ({
           className="btn btn-secondary d-flex gap-2 align-items-center justify-content-center"
           onClick={handleAddFavorite}
         >
-          On
+          <HeartIcon fill="white" />
         </button>
       ) : (
         <button
           className="btn btn-danger d-flex gap-2 align-items-center justify-content-center"
           onClick={handleRemoveFavorite}
         >
-          Off
+          <HeartOffIcon fill="white" />
         </button>
       )}
 
@@ -57,7 +60,7 @@ const WeatherCardControl: React.FC<WeatherCardControlProps> = ({
         href={`/forecast?city=${weather.name}&country=${weather.sys.country}`}
         className="btn btn-info d-flex gap-2 align-items-center justify-content-center"
       >
-        Forecast
+        <ThermometerIcon />
       </Link>
     </div>
   );

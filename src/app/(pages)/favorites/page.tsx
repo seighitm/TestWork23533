@@ -1,10 +1,10 @@
 'use client';
-import axios from 'axios';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 
 import FavoriteCardItem from '@/components/Cards/FavoriteCardItem';
 import Loader from '@/components/Loader/Loader';
+import { apFetchWeather } from '@/lib/weatherAPI';
 import { useWeatherStore } from '@/store/useWeatherStore';
 import { WeatherData } from '@/types/weather';
 
@@ -28,11 +28,10 @@ const Favorites: React.FC = () => {
     setError(null);
     try {
       const requests = favorites.map((city) =>
-        axios.get(`/api/weather?city=${city.name}&country=${city.country}`),
+        apFetchWeather(city.name, city.country),
       );
-      console.log(requests);
       const responses = await Promise.all(requests);
-      setFavoriteCitiesWeather(responses.map((r) => r.data));
+      setFavoriteCitiesWeather(responses);
       isInitialMount.current = false;
     } catch (err) {
       console.log(err);

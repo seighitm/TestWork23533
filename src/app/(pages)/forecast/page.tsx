@@ -1,10 +1,10 @@
 'use client';
 
-import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
 
 import Loader from '@/components/Loader/Loader';
 import ForecastTable from '@/components/Tables/ForecastTable';
+import { apFetchForecast } from '@/lib/weatherAPI';
 import { useWeatherStore } from '@/store/useWeatherStore';
 import { ForecastGroupedByDate, groupForecastByDate } from '@/utils/weather';
 
@@ -27,11 +27,10 @@ const Forecast: React.FC<ForecastPageProps> = ({ searchParams }) => {
   const fetchCityForecast = async () => {
     setError('');
     try {
-      const response = await axios.get(
-        `/api/forecast?city=${city}&country=${country}`,
+      const data = await apFetchForecast(
+        city ?? selectedCity?.name,
+        country ?? selectedCity?.country,
       );
-      const data = response.data;
-
       setForecastByDate(groupForecastByDate(data.list));
     } catch (err) {
       console.log(err);

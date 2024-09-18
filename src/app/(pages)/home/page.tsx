@@ -1,6 +1,5 @@
 'use client';
 
-import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
@@ -8,6 +7,7 @@ import WeatherCardControl from '@/components/Cards/WeatherCardControl';
 import WeatherCardItem from '@/components/Cards/WeatherCardItem';
 import Loader from '@/components/Loader/Loader';
 import { useDebouncedValue } from '@/hooks/useDebouncedValue';
+import { apFetchWeather, apiFetchCoordinates } from '@/lib/weatherAPI';
 import { useWeatherStore } from '@/store/useWeatherStore';
 import { City, DetailedCity } from '@/types/city';
 import { WeatherData } from '@/types/weather';
@@ -43,8 +43,7 @@ const Home: React.FC<HomePageProps> = ({ searchParams }) => {
     setIsLoadingFetchCoordinates(true);
     setErrorMessage('');
     try {
-      const geoResponse = await axios.get(`/api/coordinates?city=${cityInput}`);
-      const cities = geoResponse.data;
+      const cities = await apiFetchCoordinates(cityInput);
       const filteredCities = cities.filter((city) => city.local_names);
       setSuggestedCities(filteredCities);
 
@@ -62,10 +61,10 @@ const Home: React.FC<HomePageProps> = ({ searchParams }) => {
     setErrorMessage('');
 
     try {
-      const response = await axios.get(
-        `/api/weather?city=${city.name ?? selectedCity?.name}&country=${city.country ?? selectedCity?.country}`,
+      const weatherData = await apFetchWeather(
+        city.name ?? selectedCity?.name,
+        city.country ?? selectedCity?.country,
       );
-      const weatherData = response.data;
 
       if (weatherData) {
         setCurrentCity(weatherData);
